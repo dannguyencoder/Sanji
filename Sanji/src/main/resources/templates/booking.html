@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: header"></head>
+<body>
+	<!-- navigation -->
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation"
+		th:replace="/layout :: nav"></div>
+	<div class="container-fluid" style="
+    margin-top: -8em;>
+		<div class="row">
+			<div ng-controller="DemoCtrl" ng-cloak="" class="md-inline-form"
+				ng-app="MyApp" layout="column" layout-sm="row"
+				layout-align="center center" layout-align-sm="start start"
+				layout-fill>
+				<md-content id="SignupContent" class="md-whiteframe-10dp" flex-sm>
+				<md-toolbar flex id="materialToolbar">
+				<div class="md-toolbar-tools">
+					<span flex=""></span> <span class="md-headline" align="center">Booking
+						Form</span> <span flex=""></span>
+				</div>
+				</md-toolbar>
+				<div layout-padding="">
+					<form th:action="@{/addBooking}" th:object="${booking}"
+						method="post" role="form" class="userform" name="userForm"
+						action="" enctype="multipart/form-data" novalidate="novalidate">
+						<div layout="row" layout-sm="column">
+							<md-input-container flex-gt-sm=""> <label
+								style="font-size: 18px;">First name* :</label> <input
+								th:field="*{firstName}" name="first_name" required type="text"
+								placeholder="" th:errorclass="field-error"> <em
+								style="color: red" th:if="${#fields.hasErrors('firstName')}"
+								th:errors="*{firstName}"></em> </md-input-container>
+							<md-input-container flex-gt-sm=""> <label
+								style="font-size: 18px;">Last Name* :</label> <input
+								th:field="*{lastName}" name="last_name" required type="text"
+								placeholder="" th:errorclass="field-error"> <em
+								style="color: red" th:if="${#fields.hasErrors('lastName')}"
+								th:errors="*{lastName}"></em> </md-input-container>
+						</div>
+						<div layout="row" layout-sm="column">
+							<p
+								style="font-size: 14px; font-weight: bold; margin-left: 3px; margin-top: 18px;">Gender:
+							</p>
+							<md-radio-group th:field="*{gender}"
+								style="margin-left: 8px;margin-top: 20px;font-weight: bold"
+								required> <input type="radio" name="gender"
+								value="Male" id="male"> Male <br />
+							<input type="radio" name="gender" value="Female" id="female">
+							Female <br />
+							<em style="color: red" th:if="${#fields.hasErrors('gender')}"
+								th:errors="*{gender}"></em></md-radio-group>
+
+
+
+
+
+							<md-input-container flex-gt-sm="60"> <label
+								style="font-size: 14px; margin-left: 74px;">DOB:</label> <br>
+							<input th:field="*{dob}" required type="date" step="any"
+								name="dob" style="font-size: 16px; margin-left: 71px;" /> </md-input-container>
+						</div>
+
+						<div layout="row" layout-sm="column">
+							<md-input-container flex-gt-sm=""> <label>Phone
+								Number* :</label> <br>
+							<input th:field="*{phone}" name="phone" required type="text"
+								th:errorclass="field-error" /> <em style="color: red"
+								th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></em>
+							</md-input-container>
+						</div>
+
+						<div layout="row" layout-sm="column">
+							<md-input-container flex-gt-sm=""> <label>Email
+								:</label> <br>
+							<input required type="email" name="email" th:field="*{email}"
+								th:errorclass="field-error" /> <em style="color: red"
+								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></em>
+							</md-input-container>
+						</div>
+
+						<div layout="row" layout-sm="column">
+							<md-input-container flex-gt-sm=""> <label>Address*
+								:</label> <br>
+							<input th:field="*{address}" required type="text" name="address"
+								th:errorclass="field-error" /> <em style="color: red"
+								th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></em>
+							</md-input-container>
+						</div>
+
+
+						<div layout="row" layout-sm="column">
+							<md-input-container flex-gt-sm=""> <label>
+								Preferred date* :</label> <br>
+							<input required type="date" step="any" name="dob"
+								th:field="*{prefer_date}" style="font-size: 16px;" /> </md-input-container>
+						</div>
+
+						<div layout="row" layout-sm="column">
+							<md-input-container> <label>
+								Preferred Time* : </label> <br>
+							<br>
+							<select th:field="*{prefer_time}" id="timeselect"
+								name="timeselection" class="form-control">
+								<option value="09:00AM - 10.00AM">09:00AM - 10.00AM</option>
+								<option value="09.30AM - 10.30AM">09.30AM - 10.30AM</option>
+								<option value="10.00AM - 11.00AM">10.00AM - 11.00AM</option>
+								<option value="10.30AM - 11.30AM">10.30AM - 11.30AM</option>
+								<option value="1.00PM - 2.00PM">1.00PM - 2.00PM</option>
+								<option value="2.30PM - 3.30PM">2.30PM - 3.30PM</option>
+								<option value="3.00PM - 4.00PM">3.00PM - 4.00PM</option>
+								<option value="3.30PM - 4.30PM">3.30PM - 4.30PM</option>
+								<option value="4.00PM - 5.00 PM">4.00PM - 5.00 PM</option>
+							</select> </md-input-container>
+
+							<md-input-container> <label> Type of
+								Case : </label> <br>
+							<br>
+							<select th:field="*{case_cat_id}" id="caseselect" name="caseselect"
+								class="form-control">
+								<option th:value="1"> Administrative</option>
+								<option th:value="2">Civil</option>
+								<option th:value="3">Economic</option>
+								<option th:value="4">Traffic</option>
+								<option th:value="5">Financial</option>
+								<option th:value="6">Land</option>
+							</select> </md-input-container>
+						</div>
+
+						<div layout="row" layout-sm="column">
+							<label> Any further comments regarding your case? </label><br>
+							<textarea th:field="*{note}" rows="10" cols="50"
+								style="height: 100px;"></textarea>
+						</div>
+
+						<md-button type="submit" class="md-raised md-primary" id="submit"
+							style="width:50%; margin: 15px 0px 0px 150px;">
+						Submit</md-button>
+						<span th:utext="${bookingSuccess}"></span>
+					</form>
+				</div>
+				</md-content>
+			</div>
+		</div>
+	</div>
+	<!-- footer section -->
+	<footer th:replace="/layout :: footer"></footer>
+
+
+	<!-- scrolltop section -->
+
+	<a href="#" class="scrollup"><i
+		class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
+	<!-- <script
+		src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js'></script>
+	<script
+		src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.min.js'></script>
+	<script
+		src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.min.js'></script>
+	<script
+		src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-aria.min.js'></script>
+	<script
+		src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-messages.min.js'></script>
+	<script
+		src='https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc3/angular-material.js'></script>
+	<script
+		src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js'></script> -->
+		
+		<script type="text/javascript" th:src="@{/js/angular/angular.js}"></script>
+		<script type="text/javascript" th:src="@{/js/angular/angular-animate.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/angular/angular-route.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/angular/angular-aria.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/angular/angular-messages.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/angular/angular-material.js}"></script>
+		<script type="text/javascript" th:src="@{/js/angular/assets-cache.js}"></script>
+     	<script type="text/javascript" th:src="@{/js/index.js}"></script>
+
+</body>
+</html>

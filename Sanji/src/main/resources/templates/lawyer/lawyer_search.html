@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout_admin :: head">
+
+</head>
+<body>
+	<div class="wrapper">
+		<nav th:replace="layout_admin :: sidebar"></nav>
+		 <div id="content">
+
+			<nav th:replace="layout_admin :: navbar"></nav>
+
+	<div class="container">
+				<form class="form-inline pull-right" action="#"
+					th:action="@{/admin/lawyers/search}" method="GET">
+					<div class="form-group">
+						<input type="text" class="form-control" name="q"
+							placeholder="Type contact name..." />
+					</div>
+					<button type="submit" class="btn btn-primary">Search</button>
+				</form>
+				<div class="col-md-10">
+
+					<div class=row>
+						<div th:if="${not #lists.isEmpty(lawyers)}">
+							<span>Found</span> <strong><span
+								th:text="${#lists.size(lawyers)}"></strong></em> <span>Entries</span>
+							<table class="table table-striped table-bordered">
+								<caption class="text-left" style="font-size: 32px";font-weight:bold;>Results</caption>
+								<thead>
+									<tr class="warning">
+										<th>lawyers ID</th>
+										<th>Firstname</th>
+										<th>Lastname</th>
+										<th>DOB</th>
+										<th>Gender</th>
+										<th>Phone</th>
+										<th>Email</th>
+										<th>Address</th>
+										<th>Join Date</th>
+										<th>Law Type</th>
+										<th>Certification</th>
+										<th>Salary ID</th>
+										<th>Options</th>
+									</tr>
+								</thead>
+								<tr th:each="lawyer : ${lawyers}">
+									<td th:text="${lawyer.lawyer_id}" />
+									<td th:text="${lawyer.lawyer_firstname}" />
+									<td th:text="${lawyer.lawyer_lastname}" />
+									<td th:text="${lawyer.dateofbirth}" />
+									<td th:text="${lawyer.gender}" />
+									<td th:text="${lawyer.phone}" />
+									<td th:text="${lawyer.email}" />
+									<td th:text="${lawyer.address}" />
+									<td th:text="${lawyer.join_date}" />
+									<td th:text="${lawyer.law_type_id}" />
+									<td th:text="${lawyer.certification}" />
+									<td th:text="${lawyer.salary_id}" />
+									<td><a
+									th:href="@{/admin/lawyer/{id}/view(id=${lawyer.lawyer_id})}"
+										class="btn btn-primary"><span class="glyphicon glyphicon-info-sign"></span> View</a>
+										
+								<a th:href="@{/admin/lawyer/{id}/edit(id=${lawyer.lawyer_id})}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Update</a>
+                                <a
+									th:href="@{/admin/lawyer/{id}/delete(id=${lawyer.lawyer_id})}"
+									onclick="return confirm('Do you want to delete?');" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Delete</a>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div th:if="${#lists.isEmpty(lawyers)}">No lawyers found !</div>
+				</div>
+	</div>
+	</div>
+	</div>
+
+	
+	
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script type="text/javascript" th:src="@{/js/staff/bootstrap.min.js}"></script>	
+   
+   	<script type="text/javascript">
+             $(document).ready(function () {
+                 $('#sidebarCollapse').on('click', function () {
+                     $('#sidebar').toggleClass('active');
+                 });
+             });
+     </script>
+   
+</body>
+</html>

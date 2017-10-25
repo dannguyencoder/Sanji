@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Access Denied</title>
+<!-- Bootstrap -->
+<link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<style type="text/css">
+h3,div {
+	text-align: center;
+}
+
+img {
+	display: block;
+	margin: 0 auto;
+}
+
+a {
+margin-top: 5px;
+}
+</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<h3>Access Denied</h3>
+		<img alt="accessed-denied" th:src="@{/img/icons/accessed-denied.png}"
+			width="300"> 
+			<a th:href="@{/login}" class="btn btn-primary"> <span
+			class="glyphicon glyphicon-circle-arrow-left"></span> Back to Login
+		</a>
+	</div>
+
+</body>
+</html>

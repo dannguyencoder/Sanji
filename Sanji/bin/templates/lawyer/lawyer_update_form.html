@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout_admin :: head"></head>
+<style>
+.form-group {
+	size:
+}
+
+h3 {
+	text-align: center;
+}
+
+em {
+	color: red;
+}
+</style>
+
+<body>
+	<div class="wrapper">
+		<nav th:replace="layout_admin :: sidebar"></nav>
+		 <div id="content">
+
+			<nav th:replace="layout_admin :: navbar"></nav>
+                <div class="row">
+                
+		<div class="row">
+			<h3>Update Lawyer</h3>
+			<div class="col-md-4 col-md-offset-4">
+				<form action="#" th:action="@{/admin/lawyer/save}"
+					th:object="${lawyer}" method="POST" novalidate="novalidate">
+					<div class="form-group">
+						<input type="hidden" th:field="*{lawyer_id}" />
+						<div class="form-group">
+							<label>Last name</label> <input type="text" name="lastname"
+								class="form-control" th:field="*{lawyer_lastname}"
+								th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('lawyer_lastname')}"
+								th:errors="*{lawyer_lastname}"></em>
+						</div>
+
+						<div class="form-group">
+							<label>First name</label> <input type="text" class="form-control"
+								th:field="*{lawyer_firstname}" th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('lawyer_firstname')}"
+								th:errors="*{lawyer_firstname}"></em>
+						</div>
+						<div class="form-group">
+							<label>Address</label> <input type="text" class="form-control"
+								th:field="*{address}" th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></em>
+						</div>
+						<div class="form-group">
+							<label>Date of Birth</label> <input type="text"
+								class="form-control" th:field="*{dateofbirth}"
+								th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('dateofbirth')}"
+								th:errors="*{dateofbirth}"></em>
+						</div>
+						<div class="form-group">
+							<label>Gender</label>
+							<!-- <input type="text" class="form-control"
+								th:field="*{gender}" th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></em> -->
+
+							<select th:field="*{gender}" id="gender" name="genderselection">
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Tel</label> <input type="text" class="form-control"
+								th:field="*{phone}" th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></em>
+						</div>
+						<div class="form-group">
+							<label>Email</label> <input type="text" class="form-control"
+								th:field="*{email}" th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></em>
+						</div>
+						<div class="form-group">
+							<label>Join date</label> <input type="text" class="form-control"
+								th:field="*{join_date}" th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('join_date')}"
+								th:errors="*{join_date}"></em>
+						</div>
+						<div class="form-group">
+							<label>Certification</label> <input type="text"
+								class="form-control" th:field="*{certification}"
+								th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('certification')}"
+								th:errors="*{certification}"></em>
+						</div>
+						<div class="form-group">
+							<label>Law type</label> <input type="text" class="form-control"
+								th:field="*{law_type_id}" th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('law_type_id')}"
+								th:errors="*{law_type_id}"></em>
+						</div>
+						<div class="form-group">
+							<label>Salary level</label> <input type="text"
+								class="form-control" th:field="*{salary_id}"
+								th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('salary_id')}"
+								th:errors="*{salary_id}"></em>
+						</div>
+
+
+						<button type="submit" class="btn btn-default">Save</button>
+						<a th:href="@{/admin/lawyerList}" class="btn btn-default">Cancel</a>
+					</div>
+
+				</form>
+			</div>
+
+		</div>
+		</div>
+		</div>
+	</div>
+
+	<!-- /.container -->
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script type="text/javascript" th:src="@{/js/staff/bootstrap.min.js}"></script>	
+   
+   <script type="text/javascript">
+             $(document).ready(function () {
+                 $('#sidebarCollapse').on('click', function () {
+                     $('#sidebar').toggleClass('active');
+                 });
+             });
+     </script>
+
+</body>
+</html>

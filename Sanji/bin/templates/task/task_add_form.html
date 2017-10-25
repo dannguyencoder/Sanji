@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout2 :: head"></head>
+<style>
+.form-group {
+	size:
+}
+
+h3 {
+text-align: center;
+}
+em {
+color: red;
+}
+</style>
+
+<body>
+	<nav th:replace="layout2 :: header"></nav>
+	<div class="container main-content form">
+		<div class="row">
+		<h3>Add new task</h3>
+			<div class="col-md-4 col-md-offset-4">
+				<form action="#" th:action="@{/admin/addTask}"
+					th:object="${task}" method="POST" novalidate="novalidate">
+					<div class="form-group">
+						
+						<select class="form-control">
+						    <option th:each="booking: ${bookings}" th:value="${booking.bookingId}" th:text="${booking.firstName} + ' ' + ${booking.lastName}">
+						    </option>
+						    
+						</select>
+						
+						<!-- 
+						<select class="form-control">
+						    <option th:each="booking: ${bookings}" th:value="${booking.bookingId}" th:text="${booking.firstName} + ' ' + ${booking.lastName}">
+						    </option>
+						    
+						</select>
+						 -->
+						
+						
+						
+						
+					 
+						<div class="form-group">
+							<label>Task Note</label> <input type="text" class="form-control"
+								th:field="*{task_note}" th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('task_note')}" th:errors="*{task_note}"></em>
+						</div>
+						<div class="form-group">
+							<label>Prefered Date</label> <input type="text"
+								class="form-control" th:field="*{prefered_date}"
+								th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('prefered_date')}" th:errors="*{prefered_date}"></em>
+						</div>
+						<div class="form-group">
+							<label>Prefered Time</label> <input type="text" class="form-control"
+								th:field="*{prefered_time}" th:errorclass="field-error" /> <em
+								th:if="${#fields.hasErrors('prefered_time')}" th:errors="*{prefered_time}"></em>
+						</div>
+						
+						 
+						
+					
+
+						<button type="submit" class="btn btn-default">Save</button>
+						<a th:href="@{/admin/taskList}" class="btn btn-default">Cancel</a>
+					</div>
+
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- /.container -->
+
+	<footer th:replace="layout2 :: footer"></footer>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+		th:src="@{/webjars/jquery/1.12.4/jquery.min.js}"></script>
+	<script type="text/javascript" src="../static/js/page.js"
+		th:src="@{/js/page.js}"></script>
+	<script type="text/javascript" src="../static/js/pagination.js"
+		th:src="@{/js/pagination.js}"></script>
+	<script type="text/javascript" src="../static/js/multi.js"
+		th:src="@{/js/multi.js}"></script>
+
+
+
+</body>
+</html>

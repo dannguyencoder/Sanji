@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<title>Login LOAS</title>
+
+<!-- stylesheet css -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/nivo-lightbox.css}">
+<link rel="stylesheet" th:href="@{/css/signin.css}">
+<link rel="stylesheet" th:href="@{/css/default2.css}">
+<link rel="shortcut icon" th:href="@{img/icons/favicon.png}">
+<!-- google web font css -->
+<link href="https://fonts.googleapis.com/css?family=Roboto"
+	rel="stylesheet">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
+
+
+</head>
+<body>
+	<!-- sign-in section -->
+	<div id="section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 col-sm-12" id="left">
+					<img th:src="@{img/logo/logo.png}" width="200px">
+				</div>
+
+				<div class="col-md-9 col-sm-12" id="sign-in">
+					<h1 style="text-transform: uppercase;font-weight:bold;">Law Office Assisstance
+						System</h1>
+					<form class="form-signin" th:action="@{/login}" method="post"
+						id="signin-box">
+						<label>Email:</label> <input type="text" class="form-control"
+							name="email"> <label>Password:</label> <input
+							type="password" class="form-control" name="password">
+						<div align="center" th:if="${param.error}">
+							<p style="font-size: 20; color: #FF1C19;">Email or Password
+								invalid, please verify</p>
+						</div>
+						<!--<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>   -->
+						<a href="javascript:{}"
+							onclick="document.getElementById('signin-box').submit()"
+							class="fa fa-arrow-circle-right" style="font-size: 30px;">
+							sign in</a>
+					</form>
+
+					<footer>
+						<p>@ 2017, Sanji Team, Hanoi University</p>
+					</footer>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/js/bower_components/jquery/dist/jquery.min.js}"></script>
+	<script type="text/javascript">
+	$("input").keypress(function(event) {
+	    if (event.which == 13) {
+	        event.preventDefault();
+	        $("form").submit();
+	    }
+	});
+	</script>
+	</body>
+	</html>

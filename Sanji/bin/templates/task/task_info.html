@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout2 :: head"></head>
+<style>
+.info li span {
+font-size: 16px;
+font-weight: bold;
+color: blue;
+}
+</style>
+<body>
+	<nav th:replace="layout2 :: header"></nav>
+	<div class="container">
+		<h2 style="color: black; margin-top: -30px; margin-left: -15px; text-align: center">task
+			Details</h2>
+		<div class="row">
+			<div class="col-md-4" style="margin-left: 29em;">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" style="text-align: center;">task Information</h4>
+					</div>
+					<div class="modal-body">
+						<!--phần thân-->
+
+						<ul class="info">
+							<li>task ID: <span th:text="${task.task_id}"></span></li>
+							<li>Lawyer ID: <span th:text="${task.lawyer_id}"></span></li>
+							<li>Task Note: <span th:text="${task.task_note}"></span></li>
+							<li>task Prefer Date: <span th:text="${task.prefered_date}"></span></li>
+							<li>task Prefer Time: <span th:text="${task.prefered_time}"></span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- /.container -->
+
+	<footer th:replace="layout2 :: footer"></footer>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+		th:src="@{/webjars/jquery/1.12.4/jquery.min.js}"></script>
+	<script type="text/javascript" src="../static/js/page.js"
+		th:src="@{/js/page.js}"></script>
+	<script type="text/javascript" src="../static/js/pagination.js"
+		th:src="@{/js/pagination.js}"></script>
+	<script type="text/javascript" src="../static/js/multi.js"
+		th:src="@{/js/multi.js}"></script>
+
+
+
+</body>
+</html>

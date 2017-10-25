@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout_admin :: head"></head>
+
+<body>
+	<div class="wrapper">
+		<nav th:replace="layout_admin :: sidebar"></nav>
+		 <div id="content">
+
+			<nav th:replace="layout_admin :: navbar"></nav>
+	<h2 style="color:black;margin-top: -90px;margin-left: -15px;">task Management</h2>
+
+		<div th:if="${success}"
+			class="row alert alert-success alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<span th:text="${success}"></span>
+		</div>
+		<th:block th:if="${#lists.isEmpty(tasks)}">
+			<h3>No task</h3>
+		</th:block>
+
+		<th:block th:unless="${#lists.isEmpty(tasks)}">
+			<div class="row" style="margin-top: -4em;">
+				<a th:href="@{/admin/task/create}"
+					class="btn btn-success pull-left" style="margin-top: 73px;"> <!--<span class="glyphicon glyphicon-plus"></span>  -->
+					Add new task
+				</a>
+				<form class="form-inline pull-right" action="#"
+					th:action="@{/admin/task/search}" method="GET" style="margin-top: 6em;">
+					<div class="form-group">
+						<input type="text" class="form-control" name="q"
+							placeholder="Type contact name..." />
+					</div>
+					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</button>
+				</form>
+
+			</div>
+			<div class="row">
+				<form action="" method="post" name="MultiForm">
+					<input type="submit" name="operation"
+						onclick="document.pressed=this.value" value="Multi-Update"
+						class="btn btn-warning pull-left" style="margin-bottom: 10px;" />
+					<input type="submit" name="operation"
+						onclick="document.pressed=this.value" value="Multi-Delete"
+						class="btn btn-danger pull-left" style="margin-left: 7px;" />
+					<table class="table table-bordered table-hover" id="employeesTable">
+						<thead>
+							<tr>
+								<th><input type="checkbox" id="checkBoxAll" /></th>
+								<th width="20px">Task ID</th>
+								
+								<th>Lawyer ID</th>								
+								<th>Task Note</th>	
+								<th>task Prefer Date</th>							
+								<th>task Prefer Time</th>
+								<th>Options</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="task: ${tasks}">
+								  <th><input type="checkbox" class="checkBoxId"
+									th:value="${task.task_id}" name="taskid" /></th>
+									
+									
+								<td th:text="${task.task_id}"></td>
+								
+								<td th:text="${task.lawyer_id}"></td>
+								<td th:text="${task.task_note}"></td>
+								<td th:text="${task.prefered_date}"></td>
+								<td th:text="${task.prefered_time}"></td>
+                                  
+                                  <td>
+										<a
+									th:href="@{/admin/task/{id}/view(id=${task.task_id})}"
+										class="btn btn-primary">View</a>
+								<a th:href="@{/admin/task/{id}/edit(id=${task.task_id})}" class="btn btn-warning">Update</a>
+                                     <a
+									th:href="@{/admin/task/{id}/delete(id=${task.task_id})}"
+									onclick="return getConfirmation();" class="btn btn-danger">Delete</a></td>
+                                    
+								
+							</tr>
+
+						</tbody>
+					</table>
+				</form>
+			</div>
+
+			<div class="row" id="pagination">
+				<div class="form-group col-md-1">
+					<select class="form-control pagination" id="pageSizeSelect">
+						<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+							th:value="${pageSize}"
+							th:selected="${pageSize} == ${selectedPageSize}"></option>
+					</select>
+				</div>
+				<div th:if="${tasks.totalPages != 1}"
+					class="form-group col-md-11 pagination-centered">
+					<ul class="pagination pull-left">
+						<li th:class="${tasks.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/admin/taskList/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+						</li>
+						<li th:class="${tasks.number == 0} ? disabled"><a
+							class="pageLink"
+							th:href="@{/admin/taskList/(pageSize=${selectedPageSize}, page=${tasks.number})}">&larr;</a>
+						</li>
+						<li
+							th:class="${tasks.number == (page - 1)} ? 'active pointer-disabled'"
+							th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+							<a class="pageLink"
+							th:href="@{/admin/taskList/(pageSize=${selectedPageSize}, page=${page})}"
+							th:text="${page}"></a>
+						</li>
+						<li
+							th:class="${tasks.number + 1 == tasks.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/admin/taskList/(pageSize=${selectedPageSize}, page=${tasks.number+2})}">&rarr;</a>
+						</li>
+						<li
+							th:class="${tasks.number + 1 == tasks.totalPages} ? disabled">
+							<a class="pageLink"
+							th:href="@{/admin/taskList/(pageSize=${selectedPageSize}, page=${tasks.totalPages})}">&raquo;</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</th:block>
+	</div>
+	</div>
+	<!-- /.container -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/page.js}"></script>
+	<script type="text/javascript" th:src="@{/js/pagination.js}"></script>
+	<script type="text/javascript"th:src="@{/js/multiaction.js}"></script>
+		
+	<script type="text/javascript">
+             $(document).ready(function () {
+                 $('#sidebarCollapse').on('click', function () {
+                     $('#sidebar').toggleClass('active');
+                 });
+             });
+     </script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout_admin :: head"></head>
+<style>
+.info li span {
+	font-size: 16px;
+	font-weight: bold;
+	color: blue;
+}
+</style>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<header th:replace="layout_admin :: header"></header>
+		<aside th:replace="layout_admin :: aside"></aside>
+
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Dashboard <small>Lawyer Management</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a th:href="@{/admin/lawyerList}"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">Lawyer Management</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-4" style="margin-left: 29em;">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" style="text-align: center;">Lawyer
+										Information</h4>
+								</div>
+								<div class="modal-body">
+
+									<ul class="info">
+										<li>Lawyer ID: <span th:text="${lawyer.lawyer_id}"></span></li>
+										<li>First Name: <span
+											th:text="${lawyer.lawyer_firstname}"></span></li>
+										<li>Last Name: <span th:text="${lawyer.lawyer_lastname}"></span></li>
+										<li>Date of birth: <span th:text="${lawyer.dateofbirth}"></span></li>
+										<li>Gender: <span th:text="${lawyer.gender}"></span></li>
+										<li>Tel: <span th:text="${lawyer.phone}"></span></li>
+										<li>Email: <span th:text="${lawyer.email}"></span></li>
+										<li>Address: <span th:text="${lawyer.address}"></span></li>
+										<li>Join date: <span th:text="${lawyer.join_date}"></span></li>
+										<li>Certification: <span
+											th:text="${lawyer.certification}"></span></li>
+										<li>Salary: <span th:text="${lawyer.salary_id}"></span></li>
+										<li>Law type: <span th:text="${lawyer.law_type_id}"></span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<footer th:replace="layout_admin :: footer"></footer>
+	</div>
+
+	<!-- /.container -->
+
+	<div th:replace="layout_admin::script"></div>
+
+</body>
+</html>

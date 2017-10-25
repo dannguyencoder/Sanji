@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: header">
+
+<body data-spy="scroll" data-target=".navbar-collapse">
+	
+<!-- navigation -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" th:replace="/layout :: nav"> </div>	
+
+
+<div class="container">
+	<div class="row text-center">
+        <div class="col-sm-6 col-sm-offset-3" style=" margin-top: -10em;">
+        <br><br> <h2 style="color:#0fad00">Success</h2>
+        <img src="http://osmhotels.com//assets/check-true.jpg">
+        <h3>Dear, Custmer</h3>
+        <p style="font-size:20px;color:#5C5C5C;">Thank you for using our service . We will call you immediately to confirm.</p>
+        <a th:href="@{/}" class="btn btn-success">     Home      </a>
+    <br><br>
+        </div>
+        
+	</div>
+</div>
+
+<!-- footer section -->
+<footer th:replace="/layout :: footer"></footer>
+
+<a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.scrollTo.js}"></script>
+<script type="text/javascript" th:src="@{js/jquery.nav.js}"></script>
+<script type="text/javascript" th:src="@{js/jquery.localscroll-1.2.7-min.js}"></script>
+<script type="text/javascript" th:src="@{js/bootstrap.js}"></script>
+<script type="text/javascript" th:src="@{js/jquery.prettyPhoto.js}"></script>
+<script type="text/javascript" th:src="@{js/isotope.js}"></script>
+<script type="text/javascript" th:src="@{js/jquery.flexslider.js}"></script>
+<script type="text/javascript" th:src="@{js/inview.js}"></script>
+<script type="text/javascript" th:src="@{js/animate.js}"></script>
+<script type="text/javascript" th:src="@{js/custom.js}"></script>
+
+</body>
+</html>

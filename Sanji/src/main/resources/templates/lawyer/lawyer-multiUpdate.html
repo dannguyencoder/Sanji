@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout_admin :: head"></head>
+<body>
+	<div class="wrapper">
+		<nav th:replace="layout_admin :: sidebar"></nav>
+		 <div id="content">
+
+			<nav th:replace="layout_admin :: navbar"></nav>
+                <div class="container_fluid">
+                
+		<div class="row">
+	<h1 style="text-align: center;">Multiple Update lawyer</h1>
+			<form action="#" th:action="@{/admin/lawyer/updateMulti}" method="POST"
+				novalidate="novalidate">
+				
+
+				<table class="table table-bordered table-striped">
+					<tr>
+						<th style="text-align: center;">Lawyer ID</th>
+						<th style="text-align: center;">Last Name</th>
+						<th style="text-align: center;">First Name</th>
+						<th style="text-align: center;">DOB</th>
+						<th style="text-align: center;">Gender</th>
+						<th style="text-align: center;">Email</th>
+						<th style="text-align: center;">Tel</th>
+						<th style="text-align: center;">Address</th>
+						<th style="text-align: center;">Join Date</th>
+						<th style="text-align: center;">Certification</th>
+						<th style="text-align: center;">Salary ID</th>
+						<th style="text-align: center;">Law type ID</th>
+					</tr>
+
+					<tr th:each="lawyersList: ${lawyersList}">
+						<td><input type="text" name="id"
+							th:value="${lawyersList.lawyer_id}" readonly="readonly" /></td>
+						<td><input type="text" name="lname"
+							th:value="${lawyersList.lawyer_lastname}" /></td>
+						<td><input type="text" name="fname"
+							th:value="${lawyersList.lawyer_firstname}" /></td>
+							<td><input type="text" name="dob"
+							th:value="${lawyersList.dateofbirth}" /></td>
+								<td><select  name="gender" id="gender"
+								>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+							</select>
+							</td>
+							<td><input type="email" name="email"
+							th:value="${lawyersList.email}" />
+							</td>
+							<td><input type="number" max="11" name="phone"
+							th:value="${lawyersList.phone}" />
+							</td>
+							<td><input type="text" name="address"
+							th:value="${lawyersList.address}" /></td>
+							<td><input type="text" name="join_date"
+							th:value="${lawyersList.join_date}" /></td>
+							<td><input type="text" name="certification"
+							th:value="${lawyersList.certification}" /></td>
+							<td><input type="text" name="salary_id"
+							th:value="${lawyersList.salary_id}" /></td>
+							<td><input type="text" name="law_type_id"
+							th:value="${lawyersList.law_type_id}" /></td>
+
+					</tr>
+				</table>
+				<button type="submit" class="btn btn-default">Save</button>
+				<a th:href="@{/admin/lawyerList}" class="btn btn-default">Cancel</a>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+	
+	<!-- /.container -->
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script type="text/javascript" th:src="@{/js/staff/bootstrap.min.js}"></script>	
+   
+   <script type="text/javascript">
+             $(document).ready(function () {
+                 $('#sidebarCollapse').on('click', function () {
+                     $('#sidebar').toggleClass('active');
+                 });
+             });
+    </script>
+</body>
+</html>

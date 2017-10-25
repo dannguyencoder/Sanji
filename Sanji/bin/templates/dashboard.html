@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>LOAS System</title>
+
+<!-- Bootstrap CSS CDN -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- Our Custom CSS -->
+<link rel="stylesheet" th:href="@{/css/style4.css}">
+<link rel="stylesheet" th:href="@{/css/ionicons.min.css}">
+<link rel="stylesheet" th:href="@{/css/AdminLTE.min.css}">
+
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/responsive/2.0.2/css/responsive.dataTables.css"
+	rel="stylesheet" />
+<style type="text/css">
+td.details-control {
+    background: url('https://datatables.net/examples/resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('https://datatables.net/examples/resources/details_close.png') no-repeat center center;
+}
+</style>
+</head>
+<body>
+
+	<div class="wrapper">
+		<!-- Sidebar Holder -->
+		<nav id="sidebar" th:fragment="sidebar">
+		
+		 <div class="sidebar-header">
+				<button type="button" id="sidebarCollapse"
+						class="btn btn-info navbar-btn">
+						<i class="glyphicon glyphicon-align-left"></i>
+					</button>
+			</div>
+
+			<ul class="list-unstyled components">
+				<li class="active">
+				<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"> 
+				<i class="glyphicon glyphicon-home"></i> Home
+				</a>
+				</li>
+				<li><a th:href="@{/admin/bookingList}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						Booking Management
+				</a>
+				</li>
+				<li><a th:href="@{/admin/lawyerList}"> <i class="fa fa-users" aria-hidden="true"></i>
+						Lawyer Management
+				</a></li>
+				<li><a th:href="@{/admin/taskList}"> <i class="fa fa-tasks" aria-hidden="true"></i>
+						Task Management
+				</a></li>
+				
+				<li>
+				 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+						<i class="fa fa-gears" aria-hidden="true"></i> Tools
+				</a>
+					<ul class="collapse list-unstyled" id="pageSubmenu">
+					   <li><a href="#">Import/Export CSV</a></li>
+					   <li><a href="#">View System Log</a></li>
+					   <li><a th:href="@{/staff/bo	okingList}">Switch to Staff Mode</a></li>
+						
+					</ul>
+				</li>
+				
+				<li>
+				 <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false">
+						<i class="fa fa-wrench" aria-hidden="true"></i> Settings
+				</a>
+					<ul class="collapse list-unstyled" id="pageSubmenu2">
+					   <li><a href="#">Create new Account</a></li>
+					    <li><a href="#">Authenticate Role</a></li>
+						<li><a href="#">Change Password</a></li>
+						<li><a href="#">Update profile</a></li>
+						
+					</ul>
+				</li>
+			</ul>
+
+			<ul class="list-unstyled CTAs">
+				<li><a href="#"
+					class="article"><i class="fa fa-copyright" aria-hidden="true"></i>Thanhdo Law Office 2017</a></li>
+			</ul>
+		</nav>
+
+		<!-- Page Content Holder -->
+		<div id="content">
+
+			<nav class="navbar navbar-default" th:fragment="navbar">
+				<div class="container">
+
+				
+
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Page</a></li>
+						<li><a href="#">Page</a></li>
+						<li><a href="#">Page</a></li>
+						<li><a href="#">Page</a></li>
+					</ul>
+				</div>
+				</div>
+			</nav>
+
+			<!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>150</h3>
+
+              <p>New Orders</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bookmark"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+              <p>Bounce Rate</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>44</h3>
+
+              <p>User Registrations</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>65</h3>
+
+              <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- jQuery CDN -->
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<!-- Bootstrap Js CDN -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#sidebarCollapse').on('click', function() {
+				$('#sidebar').toggleClass('active');
+			});
+		});
+	</script>
+</body>
+</html>
